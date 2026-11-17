@@ -1,0 +1,145 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace library
+{
+    internal class Student
+    {
+        private class ReaderFine
+        {
+            public string Id { get; set; } = "";
+            public string Name { get; set; } = "";
+            public int Fine { get; set; }
+        }
+
+        public static void CulcTotal(List<string[]> rows, List<string> rawRows, int reportDay)
+        {
+            Dictionary<string, ReaderFine> fines = new Dictionary<string, ReaderFine>();
+            Dictionary<string, ReaderFine> flagged = new Dictionary<string, ReaderFine>();
+            List<string> errors = new List<string>();
+
+            for (int i = 0; i < rows.Count; i++)
+            {
+                string[] currentRow = rows[i];
+                string rawRow = rawRows[i];
+
+                if (!IsValidRow(currentRow, out int loanDay, out int returnDay))
+                {
+                    errors.Add(rawRow);
+                    continue;
+                }
+
+                int endDay = returnDay == -1 ? reportDay : returnDay;
+                int numberOfDays = endDay - loanDay;
+                string readerId = currentRow[0];
+                string readerName = currentRow[1];
+                string type = currentRow[2];
+
+                if (!fines.ContainsKey(readerId))
+                {
+                    fines[readerId] = new ReaderFine
+                    {
+                        Id = readerId,
+                        Name = readerName,
+                        Fine = 0
+                    };
+                }
+
+                fines[readerId].Fine += CalculateFine(type, numberOfDays);
+
+                if (type == "teacher" && returnDay == -1 && numberOfDays > 60)
+                {
+                    flagged[readerId] = fines[readerId];
+                }
+            }
+
+            Console.WriteLine("FINES");
+            foreach (ReaderFine reader in SortReaders(fines.Values))
+            {
+                Console.WriteLine($"{reader.Id},{reader.Name},{reader.Fine}");
+            }
+
+            Console.WriteLine("FLAGGED");
+            foreach (ReaderFine reader in SortReaders(flagged.Values))
+            {
+                Console.WriteLine($"{reader.Id},{reader.Name}");
+            }
+
+            Console.WriteLine("ERRORS");
+            foreach (string error in errors)
+            {
+                Console.WriteLine(error);
+            }
+
+            Console.WriteLine($"TOTAL,{fines.Values.Sum(reader => reader.Fine)}");
+        }
+
+        private static bool IsValidRow(string[] row, out int loanDay, out int returnDay)
+        {
+            loanDay = 0;
+            returnDay = -1;
+
+            if (row.Length != 6)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                if (string.IsNullOrWhiteSpace(row[i]))
+                {
+                    return false;
+                }
+            }
+
+            if (row[2] != "student" && row[2] != "teacher" && row[2] != "guest")
+            {
+                return false;
+            }
+
+            if (!int.TryParse(row[4], out loanDay))
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrWhiteSpace(row[5]))
+            {
+                if (!int.TryParse(row[5], out returnDay))
+                {
+                    return false;
+                }
+
+                if (returnDay < loanDay)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static int CalculateFine(string type, int numberOfDays)
+        {
+            if (type == "student")
+            {
+                return Math.Min(30, Math.Max(0, numberOfDays - 15));
+            }
+
+            if (type == "guest")
+            {
+                int lateDays = Math.Max(0, numberOfDays - 7);
+                return (lateDays + 6) / 7;
+            }
+
+            return 0;
+        }
+
+        private static IEnumerable<ReaderFine> SortReaders(IEnumerable<ReaderFine> readers)
+        {
+            return readers.OrderBy(reader => reader.Id, StringComparer.Ordinal);
+        }
+    }
+}
+
+

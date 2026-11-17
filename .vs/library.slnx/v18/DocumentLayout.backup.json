@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "M:\\library\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CF4CDDD6-50DB-4B31-A886-51398A5B1FAA}|library\\library.csproj|m:\\library\\library\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF4CDDD6-50DB-4B31-A886-51398A5B1FAA}|library\\library.csproj|solutionrelative:library\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D32E270C-7028-7BD8-792D-C69059A28440}|library\\library.csproj|m:\\library\\library\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D32E270C-7028-7BD8-792D-C69059A28440}|library\\library.csproj|solutionrelative:library\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D32E270C-7028-7BD8-792D-C69059A28440}|library\\library.csproj|m:\\library\\library\\data\\sample.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D32E270C-7028-7BD8-792D-C69059A28440}|library\\library.csproj|solutionrelative:library\\data\\sample.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D32E270C-7028-7BD8-792D-C69059A28440}|library\\library.csproj|m:\\library\\library\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D32E270C-7028-7BD8-792D-C69059A28440}|library\\library.csproj|solutionrelative:library\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,17 +22,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "sample.txt",
+              "DocumentMoniker": "M:\\library\\library\\data\\sample.txt",
+              "RelativeDocumentMoniker": "library\\data\\sample.txt",
+              "ToolTip": "M:\\library\\library\\data\\sample.txt",
+              "RelativeToolTip": "library\\data\\sample.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-11-17T13:40:29.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Student.cs",
+              "DocumentMoniker": "M:\\library\\library\\Student.cs",
+              "RelativeDocumentMoniker": "library\\Student.cs",
+              "ToolTip": "M:\\library\\library\\Student.cs",
+              "RelativeToolTip": "library\\Student.cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAkwI8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T13:26:45.252Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "M:\\library\\library\\Program.cs",
               "RelativeDocumentMoniker": "library\\Program.cs",
               "ToolTip": "M:\\library\\library\\Program.cs",
               "RelativeToolTip": "library\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAYwBYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-17T13:21:38.042Z",
               "EditorCaption": ""

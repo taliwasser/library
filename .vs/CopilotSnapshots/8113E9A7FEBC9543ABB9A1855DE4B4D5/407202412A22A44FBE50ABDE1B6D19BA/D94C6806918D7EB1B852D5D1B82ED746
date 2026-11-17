@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+
+namespace library
+{
+
+ 
+    
+        internal class Student
+        {
+            public static void CulcTotal(List<string[]> rows, int reportDay)
+            {
+                Console.WriteLine("FINES");
+
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    string[] currentRow = rows[i];
+
+                    // ברמה 1 מטפלים רק בתלמידות
+                    if (currentRow[2] != "student")
+                    {
+                        continue;
+                    }
+
+                    // המרת יום ההשאלה למספר
+                    if (!int.TryParse(currentRow[4], out int borrowDay))
+                    {
+                        continue;
+                    }
+
+                    int endDay;
+
+                    // אם הספר לא הוחזר, סופרים עד יום הדוח
+                    if (string.IsNullOrWhiteSpace(currentRow[5]))
+                    {
+                        endDay = reportDay;
+                    }
+                    else
+                    {
+                        if (!int.TryParse(currentRow[5], out endDay))
+                        {
+                            continue;
+                        }
+                    }
+
+                    int numberOfDays = endDay - borrowDay;
+
+                    int fine = 0;
+
+                    if (numberOfDays > 14)
+                    {
+                        fine = numberOfDays - 14;
+                    }
+
+                    Console.WriteLine(
+                        $"{currentRow[0]},{currentRow[1]},{fine}");
+                }
+            }
+        }
+    }
+
+

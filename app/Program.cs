@@ -1,4 +1,5 @@
-﻿using System;
+﻿using library;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -16,7 +17,9 @@ class Program
         string[] lines = File.ReadAllLines(path, Encoding.UTF8);
         int reportDay = ReadReportDay(lines);
         List<string[]> rows = ReadRows(lines);
+        List<string> rawRows = ReadRawRows(lines);
         Console.Error.WriteLine("skeleton ok: read " + Path.GetFileName(path) + " - report day " + reportDay + " - " + rows.Count + " rows");
+        Student.CulcTotal(rows, rawRows, reportDay);
 
         // Write your code here. 'reportDay' and 'rows' are ready.
     }
@@ -36,6 +39,17 @@ class Program
             string[] fields = lines[i].Split(',');
             for (int j = 0; j < fields.Length; j++) fields[j] = fields[j].Trim();
             rows.Add(fields);
+        }
+        return rows;
+    }
+
+    static List<string> ReadRawRows(string[] lines)
+    {
+        List<string> rows = new List<string>();
+        for (int i = 2; i < lines.Length; i++)
+        {
+            if (lines[i].Trim() == "") continue;
+            rows.Add(lines[i]);
         }
         return rows;
     }
